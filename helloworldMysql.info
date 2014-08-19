@@ -1,0 +1,11 @@
+name = helloworldMysql
+description = test for module creation with mysql select
+package = public-action
+version = VERSION
+core = 7.x
+files[] = helloworldMysql.module
+ 
+; Information added by drupal.org packaging script on 2010-03-21
+version = "1.0"
+project = "drupal"
+datestamp = "1269192313"

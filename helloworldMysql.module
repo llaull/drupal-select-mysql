@@ -1,0 +1,59 @@
+<?php
+/**
+ * Implementation of hook_help().
+ */
+function helloworldMysql_help($path, $arg) {
+  switch ($path) {
+    case 'admin/help#helloworldMysql':
+      $output = '<h3>helloworldMysql</h3>';
+      $output .= '<p>' . t('helloworldMysql', array('@helloworldMysql' => 'hhttp://drupalfrance.com/node/1852')) . '</p>';
+      return $output;
+  }
+}
+
+
+/**
+* Implementation of hook_permission().
+*/
+function helloworldMysql_permission() {
+  return array(
+  'access helloworldMysql' => array('title' => t('Access helloworldMysql'))
+  );
+}
+
+
+/**
+* Implementation of hook_menu().
+*/
+function helloworldMysql_menu() {
+  $items = array();
+   
+  $items['helloworldMysql/sayhelloworldMysql'] = array(
+  'title' => 'Hello World Test',
+  'page callback' => 'say_hello_world_mysql',
+  'access arguments' => array('access content'),
+  'type' => MENU_CALLBACK,
+  );
+   
+  return $items;
+}
+
+/**
+* affiche helloword dans une page
+*/
+
+function say_hello_world_mysql() {
+  $vars = '<h2>select nom_fr_fr depuis la table <strong>travel_m_pays</strong></h2>';
+
+  $result = db_query('SELECT * FROM {travel_m_pays} n ');
+
+  foreach ($result as $record) {
+
+    $vars .= $record->nom_fr_fr."<br>";
+
+  }
+
+  return $vars;
+
+}
+?>
